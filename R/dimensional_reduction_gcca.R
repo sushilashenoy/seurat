@@ -126,7 +126,7 @@ RunGCCA <- function(
 
   data.use <- lapply(data.use, function (x) x[genes.use, ])
 
-  cat("Running CCA\n", file = stderr())
+  cat("Running GCCA\n", file = stderr())
 
   gcca.results <- GenCanCor( mats = data.use, standardize = TRUE, k = num.cc, tol=rgcca.tol)
   gcca.data <- gcca.results$components
@@ -236,7 +236,9 @@ GenCanCor <- function(mats, standardize = TRUE, k = 20, tol=1e-3) {
   C <- matrix(0, nmat+1, nmat+1)
   C[nmat+1, 1:nmat] <- C[1:nmat, nmat+1] <- 1
 
-  gcca <- rgcca(A=c(mats, mmat), C=C, tau=rep(0, nmat+1),
+  mats[[nmat+1]] <- mmat
+
+  gcca <- rgcca(A=mats, C=C, tau=rep(0, nmat+1),
     ncomp=c(rep(1, nmat), k), tol=tol, scheme='factorial')
   gcca$components <- gcca$a[[nmat+1]]
 
