@@ -135,7 +135,7 @@ RunGCCA <- function(
     cat("Merging objects\n", file = stderr())
     combined.object <- Reduce(function (object1, object2) {
       MergeSeurat(
-      object1 = object,
+      object1 = object1,
       object2 = object2,
       do.scale = FALSE,
       do.center = FALSE,
