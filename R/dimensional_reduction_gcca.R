@@ -48,7 +48,7 @@ RunGCCA <- function(
   ...
 ) {
 
-  if (! missing(x = objects) ) {
+  if ( missing(x = objects) ) {
     stop("objects must be a list of seurat objects or a single seurat object (with group.by defined).")
   }
   if (! missing(x = group.by) && ! missing(x = objects) && is.list(objects) && length(objects) > 1 ) {
