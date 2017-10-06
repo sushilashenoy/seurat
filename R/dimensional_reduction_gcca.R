@@ -144,7 +144,7 @@ RunGCCA <- function(
     combined.object <- ScaleData(object = combined.object)
     combined.object@scale.data[is.na(x = combined.object@scale.data)] <- 0
     combined.object@var.genes <- genes.use
-    rownames(cca.data) <- colnames(combined.object@data)
+    rownames(gcca.data) <- colnames(combined.object@data)
     combined.object <- SetDimReduction(
       object = combined.object,
       reduction.type = "gcca",
