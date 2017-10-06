@@ -130,7 +130,7 @@ RunGCCA <- function(
 
   gcca.results <- GenCanCor( mats = data.use, standardize = TRUE, k = num.cc, tol=rgcca.tol)
   gcca.data <- gcca.results$components
-  colnames(x = gcca.data) <- paste0("GCC", 1:num.cc)
+  colnames(x = gcca.data) <- paste0("CC", 1:num.cc)
   if ( is.list(objects) && length(objects) > 1 ) {
     cat("Merging objects\n", file = stderr())
     combined.object <- Reduce(function (object1, object2) {
@@ -147,28 +147,28 @@ RunGCCA <- function(
     rownames(gcca.data) <- colnames(combined.object@data)
     combined.object <- SetDimReduction(
       object = combined.object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       slot = "cell.embeddings",
       new.data = gcca.data
     )
     combined.object <- SetDimReduction(
       object = combined.object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       slot = "key",
-      new.data = "GCC"
+      new.data = "CC"
     )
     combined.object <- ProjectDim(
       object = combined.object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       do.print = FALSE
     )
     combined.object <- SetDimReduction(
       object = combined.object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       slot = "gene.loadings",
       new.data = GetGeneLoadings(
         object = combined.object,
-        reduction.type = "gcca",
+        reduction.type = "cca",
         use.full = TRUE,
         genes.use = genes.use
       )
@@ -183,20 +183,20 @@ RunGCCA <- function(
   } else {
     object <- SetDimReduction(
       object = object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       slot = "cell.embeddings",
       new.data = gcca.data
     )
     object <- SetDimReduction(
       object = object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       slot = "key",
-      new.data = "GCC"
+      new.data = "CC"
     )
 
     object <- ProjectDim(
       object = object,
-      reduction.type = "gcca",
+      reduction.type = "cca",
       do.print = FALSE
     )
     object@scale.data[is.na(x = object@scale.data)] <- 0
