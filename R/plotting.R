@@ -1096,7 +1096,7 @@ FeaturePlot <- function(
       data.plot = data.plot,
       dark.theme = dark.theme
     ))
-  } else {
+  } else if (!do.return) {
     print(x = cowplot::plot_grid(plotlist = pList, ncol = nCol))
   }
   ResetPar()
