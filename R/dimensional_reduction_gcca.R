@@ -74,6 +74,7 @@ RunGCCA <- function(
       stop("0 valid genes in genes.use")
     }
   } else {
+    object <- objects
     if (! missing(x = group.by)) {
       if (! group.by %in% colnames(x = object@meta.data)) {
         stop("invalid group.by parameter")
