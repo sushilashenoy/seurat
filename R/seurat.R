@@ -58,7 +58,7 @@ seurat <- methods::setClass(
     dr = "list",
     assay = "list",
     hvg.info = "data.frame",
-    imputed = "data.frame",
+    imputed = "ANY",
     cell.names = "vector",
     cluster.tree = "list",
     snn = "dgCMatrix",
