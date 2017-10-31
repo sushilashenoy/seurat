@@ -79,6 +79,7 @@ Collate:
     'interaction.R'
     'jackstraw.R'
     'jackstraw_internal.R'
+    'magic.R'
     'multi_modal.R'
     'plotting.R'
     'plotting_internal.R'
