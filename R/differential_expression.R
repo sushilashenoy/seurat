@@ -282,15 +282,15 @@ FindMarkers <- function(
   }
   #return results
   to.return[, "avg_logFC"] <- total.diff[rownames(x = to.return)]
-  to.return <- cbind(to.return, data.alpha[rownames(x = to.return), ])
+  to.return <- cbind(to.return, data.alpha[rownames(x = to.return), , drop=FALSE])
   to.return$p_val_adj = p.adjust(p = to.return$p_val,method = "bonferroni",
                                  n =   nrow(GetAssayData(object = object,
                                                          assay.type = assay.type,
                                                          slot = "data")))
   if (test.use == "roc") {
-    to.return <- to.return[order(-to.return$power, -to.return$avg_logFC), ]
+    to.return <- to.return[order(-to.return$power, -to.return$avg_logFC), , drop=FALSE]
   } else {
-    to.return <- to.return[order(to.return$p_val, -to.return$avg_logFC), ]
+    to.return <- to.return[order(to.return$p_val, -to.return$avg_logFC), , drop=FALSE]
   }
   if (only.pos) {
     to.return <- subset(x = to.return, subset = avg_logFC > 0)
