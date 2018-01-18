@@ -1339,7 +1339,7 @@ WilcoxDETest <- function(
   coldata[cells.2, "group"] <- "Group2"
   coldata$group <- factor(x = coldata$group)
   coldata$wellKey <- rownames(x = coldata)
-  countdata.test <- data.test[genes.use, rownames(x = coldata)]
+  countdata.test <- data.test[genes.use, rownames(x = coldata), drop=FALSE]
   mysapply <- if (print.bar) {pbsapply} else {sapply}
   p_val <- mysapply(
     X = 1:nrow(x = countdata.test),
