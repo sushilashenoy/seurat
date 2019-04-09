@@ -3,7 +3,7 @@
   if (n == 1 ) return(x)
   y <- x
   for ( i in 2:n ) {
-    x <- x %*% y
+    y <- x %*% y
   }
   return(y)
 }
