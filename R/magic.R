@@ -45,10 +45,10 @@ RunMagic <- function(object, t=6) {
   diffusion <- markov %^% t
 
   message('Calculating imputed values')
-  imp.data <- t(diffusion %*% t(dds@data))
+  imp.data <- t(diffusion %*% t(object@data))
 
   message('Calculating scaling factors')
-  scaling.factor <- apply(dds@data, 1, quantile, 0.99)/apply(imp.data, 1, max)
+  scaling.factor <- apply(object@data, 1, quantile, 0.99)/apply(imp.data, 1, max)
 
   message('Saving scaled imputed data')
   scaled.imp.data <- sweep(imp.data, 1, scaling.factor, '*')
